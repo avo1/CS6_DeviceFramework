@@ -141,13 +141,13 @@ extension ContactsViewController: CNContactPickerDelegate {
         presentViewController(contactPicker, animated: true, completion: nil)
     }
     
-//    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
-//        objects.append(contact)
-//        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//        self.tableView.reloadData()
-//        //})
-//        //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
-//    }
+    //    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
+    //        objects.append(contact)
+    //        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    //        self.tableView.reloadData()
+    //        //})
+    //        //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
+    //    }
     
     func contactPickerDidCancel(picker: CNContactPickerViewController) {
         dismissViewControllerAnimated(true, completion: nil)

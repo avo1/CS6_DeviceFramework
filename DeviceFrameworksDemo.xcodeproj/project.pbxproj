@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18F8B48B1D8D94D60038FFDD /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */; };
+		18F8B48D1D8D963A0038FFDD /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */; };
+		18F8B48F1D8E260C0038FFDD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48E1D8E260C0038FFDD /* Helper.swift */; };
 		E2C671191CBB80B400DD519E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C671181CBB80B400DD519E /* AppDelegate.swift */; };
 		E2C6711B1CBB80B400DD519E /* CoreLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C6711A1CBB80B400DD519E /* CoreLocationViewController.swift */; };
 		E2C6711E1CBB80B400DD519E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2C6711C1CBB80B400DD519E /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		18F8B48E1D8E260C0038FFDD /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		E2C671151CBB80B400DD519E /* DeviceFrameworksDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceFrameworksDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C671181CBB80B400DD519E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2C6711A1CBB80B400DD519E /* CoreLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F8B48B1D8D94D60038FFDD /* LocalAuthentication.framework in Frameworks */,
 				E2C6712D1CBB89A600DD519E /* MapKit.framework in Frameworks */,
 				E2C6712B1CBB83EF00DD519E /* CoreLocation.framework in Frameworks */,
 			);
@@ -52,6 +59,7 @@
 		E2C6710C1CBB80B400DD519E = {
 			isa = PBXGroup;
 			children = (
+				18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */,
 				E2C6712C1CBB89A600DD519E /* MapKit.framework */,
 				E2C6712A1CBB83EF00DD519E /* CoreLocation.framework */,
 				E2C671171CBB80B400DD519E /* DeviceFrameworksDemo */,
@@ -73,6 +81,7 @@
 				E2C671181CBB80B400DD519E /* AppDelegate.swift */,
 				E2C6711A1CBB80B400DD519E /* CoreLocationViewController.swift */,
 				E2C6711C1CBB80B400DD519E /* Main.storyboard */,
+				18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */,
 				E2C6711F1CBB80B400DD519E /* Assets.xcassets */,
 				E2C671211CBB80B400DD519E /* LaunchScreen.storyboard */,
 				E2C671241CBB80B400DD519E /* Info.plist */,
@@ -80,6 +89,7 @@
 				E2C671301CBB941D00DD519E /* AVFoundationViewController.swift */,
 				E2C671321CBBAF2500DD519E /* ContactsViewController.swift */,
 				E2C671341CBBB01900DD519E /* ContactCell.swift */,
+				18F8B48E1D8E260C0038FFDD /* Helper.swift */,
 			);
 			path = DeviceFrameworksDemo;
 			sourceTree = "<group>";
@@ -159,9 +169,11 @@
 				E2C671351CBBB01900DD519E /* ContactCell.swift in Sources */,
 				E2C671311CBB941D00DD519E /* AVFoundationViewController.swift in Sources */,
 				E2C6711B1CBB80B400DD519E /* CoreLocationViewController.swift in Sources */,
+				18F8B48D1D8D963A0038FFDD /* AuthenticationViewController.swift in Sources */,
 				E2C671191CBB80B400DD519E /* AppDelegate.swift in Sources */,
 				E2C6712F1CBB8B8E00DD519E /* CameraViewController.swift in Sources */,
 				E2C671331CBBAF2500DD519E /* ContactsViewController.swift in Sources */,
+				18F8B48F1D8E260C0038FFDD /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +290,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DeviceFrameworksDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.coderschool.DeviceFrameworksDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drm.DeviceFrameworksDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -292,7 +304,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DeviceFrameworksDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.coderschool.DeviceFrameworksDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drm.DeviceFrameworksDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
