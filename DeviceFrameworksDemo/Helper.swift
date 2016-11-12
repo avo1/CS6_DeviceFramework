@@ -10,16 +10,16 @@ import UIKit
 
 class Helper: NSObject {
     
-    static func showAlertWithTitle(title:String, message:String, inViewController vc: UIViewController) {
+    static func showAlertWithTitle(_ title:String, message:String, inViewController vc: UIViewController) {
         
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertVC.addAction(okAction)
         
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            vc.presentViewController(alertVC, animated: true, completion: nil)
+        DispatchQueue.main.async { () -> Void in
+            vc.present(alertVC, animated: true, completion: nil)
         }
     }
     

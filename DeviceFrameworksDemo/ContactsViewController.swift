@@ -14,7 +14,7 @@ class ContactsViewController: UIViewController {
     var store: CNContactStore!
     var objects = [CNContact]()
     
-    @IBAction func addButtonDidTap(sender: UIBarButtonItem) {
+    @IBAction func addButtonDidTap(_ sender: UIBarButtonItem) {
         print("add existing contact")
         addExistingContact()
     }
@@ -29,9 +29,9 @@ class ContactsViewController: UIViewController {
     
     func getContacts() {
         store = CNContactStore()
-        let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
+        let status = CNContactStore.authorizationStatus(for: .contacts)
         
-        if status == .NotDetermined {
+        if status == .notDetermined {
             showMessage("Give me your contacts?", okHandler: { 
                 self.requestForAccess({ (accessGranted) in
                     if accessGranted {
@@ -42,23 +42,23 @@ class ContactsViewController: UIViewController {
                     self.showMessage("No problem. I'll ask again", okHandler: nil, cancelHandler: nil)
             })
             
-        } else if status == .Authorized {
+        } else if status == .authorized {
             self.retrieveContactsWithStore(store)
         } else {
             showMessage("Uh oh. No permission: \(status.rawValue)", okHandler: nil, cancelHandler: nil)
         }
     }
     
-    func retrieveContactsWithStore(store: CNContactStore) {
+    func retrieveContactsWithStore(_ store: CNContactStore) {
         do {
-            let groups = try store.groupsMatchingPredicate(nil)
-            let predicate = CNContact.predicateForContactsInGroupWithIdentifier(groups[0].identifier)
+            let groups = try store.groups(matching: nil)
+            let predicate = CNContact.predicateForContactsInGroup(withIdentifier: groups[0].identifier)
             //let predicate = CNContact.predicateForContactsMatchingName("John")
-            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactEmailAddressesKey]
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactEmailAddressesKey] as [Any]
             
-            let contacts = try store.unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
+            let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
             self.objects = contacts
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
             })
         } catch {
@@ -66,21 +66,21 @@ class ContactsViewController: UIViewController {
         }
     }
     
-    func requestForAccess(completionHandler: (accessGranted: Bool) -> Void) {
-        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(CNEntityType.Contacts)
+    func requestForAccess(_ completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: CNEntityType.contacts)
         
         switch authorizationStatus {
-        case .Authorized:
-            completionHandler(accessGranted: true)
+        case .authorized:
+            completionHandler(true)
             
-        case .Denied, .NotDetermined:
-            self.store.requestAccessForEntityType(CNEntityType.Contacts, completionHandler: { (access, accessError) -> Void in
+        case .denied, .notDetermined:
+            self.store.requestAccess(for: CNEntityType.contacts, completionHandler: { (access, accessError) -> Void in
                 if access {
-                    completionHandler(accessGranted: access)
+                    completionHandler(access)
                 }
                 else {
-                    if authorizationStatus == CNAuthorizationStatus.Denied {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if authorizationStatus == CNAuthorizationStatus.denied {
+                        DispatchQueue.main.async(execute: { () -> Void in
                             let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
                             self.showMessage(message, okHandler: nil, cancelHandler: nil)
                         })
@@ -89,43 +89,43 @@ class ContactsViewController: UIViewController {
             })
             
         default:
-            completionHandler(accessGranted: false)
+            completionHandler(false)
         }
     }
     
-    func showMessage(message: String, okHandler: (() -> Void)?, cancelHandler: (() -> Void)?) {
-        let alertController = UIAlertController(title: "About your contacts", message: message, preferredStyle: .Alert)
+    func showMessage(_ message: String, okHandler: (() -> Void)?, cancelHandler: (() -> Void)?) {
+        let alertController = UIAlertController(title: "About your contacts", message: message, preferredStyle: .alert)
         
         if let handler = cancelHandler {
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 handler()
             }
             alertController.addAction(cancelAction)
         }
         
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
             okHandler?()
         }
         alertController.addAction(OKAction)
         
-        self.presentViewController(alertController, animated: true) {
+        self.present(alertController, animated: true) {
             // ...
         }
     }
 }
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! ContactCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
         
-        let contact = self.objects[indexPath.row]
+        let contact = self.objects[(indexPath as NSIndexPath).row]
         let formatter = CNContactFormatter()
         
-        cell.nameLabel.text = formatter.stringFromContact(contact)
+        cell.nameLabel.text = formatter.string(from: contact)
         //        cell.emailLabel.text = contact.emailAddresses.first?.value as? String
         
         return cell
@@ -138,7 +138,7 @@ extension ContactsViewController: CNContactPickerDelegate {
         
         let contactPicker = CNContactPickerViewController()
         contactPicker.delegate = self
-        presentViewController(contactPicker, animated: true, completion: nil)
+        present(contactPicker, animated: true, completion: nil)
     }
     
     //    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
@@ -149,11 +149,11 @@ extension ContactsViewController: CNContactPickerDelegate {
     //        //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
     //    }
     
-    func contactPickerDidCancel(picker: CNContactPickerViewController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func contactPicker(picker: CNContactPickerViewController, didSelectContacts contacts: [CNContact]) {
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
         objects = objects + contacts
         print("selected multiple contacts", contacts)
     }

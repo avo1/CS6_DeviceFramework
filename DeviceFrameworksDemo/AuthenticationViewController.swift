@@ -17,18 +17,18 @@ class AuthenticationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func onLogin(sender: UIButton) {
+    @IBAction func onLogin(_ sender: UIButton) {
         let authenticationContext = LAContext()
         var err: NSError?
         
-        guard authenticationContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &err) else {
+        guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &err) else {
             
             Helper.showAlertWithTitle("Error", message: "No touchID found", inViewController: self)
             return
             
         }
         
-        authenticationContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "bahlah") { (success, error) in
+        authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "bahlah") { (success, error) in
             if success {
                 // Fingerprint recognized
                 Helper.showAlertWithTitle("Welcome", message: "Login successfully", inViewController: self)
