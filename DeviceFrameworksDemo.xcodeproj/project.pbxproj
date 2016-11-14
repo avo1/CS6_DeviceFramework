@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1879D22E1DD9F0540061E10C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1879D22D1DD9F0540061E10C /* Contacts.framework */; };
+		1879D2301DD9F0670061E10C /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1879D22F1DD9F0670061E10C /* ContactsUI.framework */; };
 		18F8B48B1D8D94D60038FFDD /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */; };
 		18F8B48D1D8D963A0038FFDD /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */; };
 		18F8B48F1D8E260C0038FFDD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48E1D8E260C0038FFDD /* Helper.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1879D22D1DD9F0540061E10C /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		1879D22F1DD9F0670061E10C /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		18F8B48E1D8E260C0038FFDD /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1879D2301DD9F0670061E10C /* ContactsUI.framework in Frameworks */,
+				1879D22E1DD9F0540061E10C /* Contacts.framework in Frameworks */,
 				18F8B48B1D8D94D60038FFDD /* LocalAuthentication.framework in Frameworks */,
 				E2C6712D1CBB89A600DD519E /* MapKit.framework in Frameworks */,
 				E2C6712B1CBB83EF00DD519E /* CoreLocation.framework in Frameworks */,
@@ -56,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1879D22C1DD9F0540061E10C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1879D22F1DD9F0670061E10C /* ContactsUI.framework */,
+				1879D22D1DD9F0540061E10C /* Contacts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E2C6710C1CBB80B400DD519E = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +79,7 @@
 				E2C6712A1CBB83EF00DD519E /* CoreLocation.framework */,
 				E2C671171CBB80B400DD519E /* DeviceFrameworksDemo */,
 				E2C671161CBB80B400DD519E /* Products */,
+				1879D22C1DD9F0540061E10C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

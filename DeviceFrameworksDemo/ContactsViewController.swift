@@ -24,7 +24,14 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        getContacts()
+        
+        if #available(iOS 9.0, *) {
+            getContacts()
+        } else {
+            print("you are running in ios < 9")
+        }
+        
+        
     }
     
     func getContacts() {
@@ -141,20 +148,20 @@ extension ContactsViewController: CNContactPickerDelegate {
         present(contactPicker, animated: true, completion: nil)
     }
     
-    //    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
-    //        objects.append(contact)
-    //        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-    //        self.tableView.reloadData()
-    //        //})
-    //        //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
-    //    }
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+            objects.append(contact)
+            //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+            //})
+            //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
+        }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-        objects = objects + contacts
-        print("selected multiple contacts", contacts)
-    }
+//    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+//        objects = objects + contacts
+//        print("selected multiple contacts", contacts)
+//    }
 }

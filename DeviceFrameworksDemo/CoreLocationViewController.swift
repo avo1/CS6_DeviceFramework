@@ -19,7 +19,7 @@ class CoreLocationViewController: UIViewController {
         super.viewDidLoad()
         print("setting locationManager")
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers //kCLLocationAccura
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 300
     }
@@ -29,6 +29,7 @@ class CoreLocationViewController: UIViewController {
 extension CoreLocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedWhenInUse {
+            print("start update location")
             locationManager.startUpdatingLocation()
 //            locationManager.startMonitoringSignificantLocationChanges()
         }
