@@ -19,6 +19,7 @@ class CoreLocationViewController: UIViewController {
         super.viewDidLoad()
         print("setting locationManager")
         locationManager.delegate = self
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers //kCLLocationAccura
         locationManager.requestWhenInUseAuthorization()
         locationManager.distanceFilter = 300

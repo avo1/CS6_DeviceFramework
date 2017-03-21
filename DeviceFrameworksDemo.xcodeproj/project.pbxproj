@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1857E4851E80407D00E22654 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857E4841E80407D00E22654 /* NotiViewController.swift */; };
 		1879D22E1DD9F0540061E10C /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1879D22D1DD9F0540061E10C /* Contacts.framework */; };
 		1879D2301DD9F0670061E10C /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1879D22F1DD9F0670061E10C /* ContactsUI.framework */; };
+		18AA79A01E813E38007E99C7 /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AA799F1E813E38007E99C7 /* MotionViewController.swift */; };
 		18F8B48B1D8D94D60038FFDD /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */; };
 		18F8B48D1D8D963A0038FFDD /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */; };
 		18F8B48F1D8E260C0038FFDD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8B48E1D8E260C0038FFDD /* Helper.swift */; };
@@ -26,8 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1857E4841E80407D00E22654 /* NotiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
 		1879D22D1DD9F0540061E10C /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		1879D22F1DD9F0670061E10C /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		18AA799F1E813E38007E99C7 /* MotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
 		18F8B48A1D8D94D60038FFDD /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		18F8B48E1D8E260C0038FFDD /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				E2C671181CBB80B400DD519E /* AppDelegate.swift */,
 				E2C6711A1CBB80B400DD519E /* CoreLocationViewController.swift */,
 				E2C6711C1CBB80B400DD519E /* Main.storyboard */,
+				18AA799F1E813E38007E99C7 /* MotionViewController.swift */,
+				1857E4841E80407D00E22654 /* NotiViewController.swift */,
 				18F8B48C1D8D963A0038FFDD /* AuthenticationViewController.swift */,
 				E2C6711F1CBB80B400DD519E /* Assets.xcassets */,
 				E2C671211CBB80B400DD519E /* LaunchScreen.storyboard */,
@@ -187,10 +193,12 @@
 				E2C671311CBB941D00DD519E /* AVFoundationViewController.swift in Sources */,
 				E2C6711B1CBB80B400DD519E /* CoreLocationViewController.swift in Sources */,
 				18F8B48D1D8D963A0038FFDD /* AuthenticationViewController.swift in Sources */,
+				18AA79A01E813E38007E99C7 /* MotionViewController.swift in Sources */,
 				E2C671191CBB80B400DD519E /* AppDelegate.swift in Sources */,
 				E2C6712F1CBB8B8E00DD519E /* CameraViewController.swift in Sources */,
 				E2C671331CBBAF2500DD519E /* ContactsViewController.swift in Sources */,
 				18F8B48F1D8E260C0038FFDD /* Helper.swift in Sources */,
+				1857E4851E80407D00E22654 /* NotiViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -296,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
