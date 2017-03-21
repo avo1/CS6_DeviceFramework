@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-class AVFoundationViewController: UIViewController {
+class AVFoundationViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var session: AVCaptureSession?
-    var stillImageOutput: AVCaptureStillImageOutput?
+    var photoOutput: AVCapturePhotoOutput?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
 
     @IBOutlet weak var previewView: UIView!
@@ -25,26 +25,27 @@ class AVFoundationViewController: UIViewController {
         super.viewWillAppear(animated)
 
         // NOTE: If you plan to upload your photo to Parse,
-        // you will likely need to change your preset to AVCaptureSessionPresetHigh or AVCaptureSessionPresetMedium to keep the size under the 10mb Parse max.
+        // you will likely need to change your preset to AVCaptureSessionPresetHigh or 
+        // AVCaptureSessionPresetMedium to keep the size under the 10mb Parse max.
         session = AVCaptureSession()
-        session!.sessionPreset = AVCaptureSessionPresetPhoto
+        session?.sessionPreset = AVCaptureSessionPresetPhoto
         let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 
         let input: AVCaptureDeviceInput = try! AVCaptureDeviceInput(device: backCamera)
 
-        if session!.canAddInput(input) {
-            session!.addInput(input)
+        if (session?.canAddInput(input))! {
+            session?.addInput(input)
             // The remainder of the session setup will go here...
         }
 
-        stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        photoOutput = AVCapturePhotoOutput()
+        //photoOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
 
-        if session!.canAddOutput(stillImageOutput) {
-            session!.addOutput(stillImageOutput)
+        if (session?.canAddOutput(photoOutput))! {
+            session?.addOutput(photoOutput)
             // Configure the Live Preview here...
         }
-
+        
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
         if let videoPreviewLayer = videoPreviewLayer {
             videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect
@@ -61,22 +62,30 @@ class AVFoundationViewController: UIViewController {
     }
 
     func capturePhoto() {
-        if let videoConnection = stillImageOutput!.connection(withMediaType: AVMediaTypeVideo) {
+        if let _ = photoOutput?.connection(withMediaType: AVMediaTypeVideo) {
             // Code for photo capture goes here...
-            stillImageOutput?.captureStillImageAsynchronously(
-                from: videoConnection, completionHandler: { (sampleBuffer, error) -> Void in
-                    // Process the image data (sampleBuffer) here to get an image file
-                    // we can put in our captureImageView
-                    guard sampleBuffer != nil else {
-                        print("captureStillImageAsynchronouslyFromConnection error", error.debugDescription)
-                        return}
-
-                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-                    let dataProvider = CGDataProvider(data: imageData as! CFData)
-                    let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent)
-                    let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
-                    self.captureImageView.image = image
-            })
+            let photoSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])
+            photoOutput?.capturePhoto(with: photoSetting, delegate: self)
         }
+    }
+    
+    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!,
+                                                                         previewPhotoSampleBuffer: previewPhotoSampleBuffer)
+        
+        let dataProvider = CGDataProvider(data: imageData as! CFData)
+        let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!,
+                                 decode: nil,
+                                 shouldInterpolate: true,
+                                 intent: CGColorRenderingIntent.defaultIntent)
+        
+        let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
+        self.captureImageView.image = image
     }
 }
