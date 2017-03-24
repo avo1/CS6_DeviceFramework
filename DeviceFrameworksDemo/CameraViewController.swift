@@ -32,6 +32,10 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         imageView.image = originalImage
         
         // Do something with the images (based on your use case)
+        if(picker.sourceType == UIImagePickerControllerSourceType.camera)
+        {
+            UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil)
+        }
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)
