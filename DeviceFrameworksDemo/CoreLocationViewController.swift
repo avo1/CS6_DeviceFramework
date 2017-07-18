@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 
 class CoreLocationViewController: UIViewController {
+    
     lazy var locationManager = CLLocationManager()
     
     @IBOutlet var mapView: MKMapView!

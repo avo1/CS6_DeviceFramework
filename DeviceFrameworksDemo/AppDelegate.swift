@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
             
             let content = UNMutableNotificationContent()
-            content.title = "Exercism Reminder"
-            content.body = "Practice your coding skill!"
+            content.title = "Workout Reminder"
+            content.body = "Do some push up!"
             content.sound = UNNotificationSound.default()
             
             let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)

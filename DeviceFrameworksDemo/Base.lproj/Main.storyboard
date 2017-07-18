@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d6R-Qy-GFR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d6R-Qy-GFR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -380,16 +380,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Appleseed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3P-5D-06C">
-                                                    <rect key="frame" x="8" y="11" width="179" height="21"/>
+                                                    <rect key="frame" x="10" y="11" width="355" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="I3P-5D-06C" secondAttribute="trailing" constant="188" id="Af6-po-DUb"/>
+                                                <constraint firstAttribute="trailing" secondItem="I3P-5D-06C" secondAttribute="trailing" constant="10" id="Af6-po-DUb"/>
                                                 <constraint firstItem="I3P-5D-06C" firstAttribute="centerY" secondItem="N8G-U3-Iew" secondAttribute="centerY" id="VEj-Tu-HR5"/>
-                                                <constraint firstItem="I3P-5D-06C" firstAttribute="leading" secondItem="N8G-U3-Iew" secondAttribute="leading" constant="8" id="cXW-iH-KCV"/>
+                                                <constraint firstItem="I3P-5D-06C" firstAttribute="leading" secondItem="N8G-U3-Iew" secondAttribute="leading" constant="10" id="cXW-iH-KCV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

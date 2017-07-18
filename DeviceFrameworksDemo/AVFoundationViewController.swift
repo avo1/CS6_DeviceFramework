@@ -79,7 +79,7 @@ class AVFoundationViewController: UIViewController, AVCapturePhotoCaptureDelegat
         let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!,
                                                                          previewPhotoSampleBuffer: previewPhotoSampleBuffer)
         
-        let dataProvider = CGDataProvider(data: imageData as! CFData)
+        let dataProvider = CGDataProvider(data: imageData! as CFData)
         let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!,
                                  decode: nil,
                                  shouldInterpolate: true,

@@ -14,12 +14,13 @@ class ContactsViewController: UIViewController {
     var store: CNContactStore!
     var objects = [CNContact]()
     
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBAction func addButtonDidTap(_ sender: UIBarButtonItem) {
         print("add existing contact")
         addExistingContact()
     }
     
-    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +31,6 @@ class ContactsViewController: UIViewController {
         } else {
             print("you are running in ios < 9")
         }
-        
-        
     }
     
     func getContacts() {
@@ -39,14 +38,14 @@ class ContactsViewController: UIViewController {
         let status = CNContactStore.authorizationStatus(for: .contacts)
         
         if status == .notDetermined {
-            showMessage("Give me your contacts?", okHandler: { 
+            showMessage("Give me your contacts?", okHandler: {
                 self.requestForAccess({ (accessGranted) in
                     if accessGranted {
                         self.retrieveContactsWithStore(self.store)
                     }
                 })
-                }, cancelHandler: {
-                    self.showMessage("No problem. I'll ask again", okHandler: nil, cancelHandler: nil)
+            }, cancelHandler: {
+                self.showMessage("No problem. I'll ask again", okHandler: nil, cancelHandler: nil)
             })
             
         } else if status == .authorized {
@@ -147,26 +146,25 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
 extension ContactsViewController: CNContactPickerDelegate {
     func addExistingContact() {
         
-        
         let contactPicker = CNContactPickerViewController()
         contactPicker.delegate = self
         present(contactPicker, animated: true, completion: nil)
     }
     
-        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-            objects.append(contact)
-            //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.tableView.reloadData()
-            //})
-            //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
-        }
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        objects.append(contact)
+        //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.tableView.reloadData()
+        //})
+        //        NSNotificationCenter.defaultCenter().postNotificationName("addNewContact", object: nil, userInfo: ["contactToAdd": contact])
+    }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-//    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-//        objects = objects + contacts
-//        print("selected multiple contacts", contacts)
-//    }
+    //    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+    //        objects = objects + contacts
+    //        print("selected multiple contacts", contacts)
+    //    }
 }

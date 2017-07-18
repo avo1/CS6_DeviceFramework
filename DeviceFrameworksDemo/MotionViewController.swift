@@ -28,9 +28,16 @@ class MotionViewController: UIViewController {
         
         motionManager = CMMotionManager()
         motionManager.startAccelerometerUpdates()
+        motionManager.startDeviceMotionUpdates()
         
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(MotionViewController.update), userInfo: nil, repeats: true)
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        print("bye bye")
+        timer.invalidate()
     }
     
     func update() {
@@ -43,9 +50,9 @@ class MotionViewController: UIViewController {
 //        if let magnetometerData = motionManager.magnetometerData {
 //            print("Magneto = \(magnetometerData)")
 //        }
-//        if let deviceMotion = motionManager.deviceMotion {
-//            print("Device motion = \(deviceMotion)")
-//        }
+        if let deviceMotion = motionManager.deviceMotion {
+            print("Device motion = \(deviceMotion)")
+        }
     }
 
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
